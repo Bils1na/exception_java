@@ -1,5 +1,6 @@
 package sem1;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -35,8 +36,13 @@ public class Main {
 //        int[][] array2 = null;
 //        System.out.println(task4(array2));
 
-        Integer[] array = new Integer[]{1, 2, 3, 4, null, 6, 7, null, 9};
-        checkArray(array);
+//        Integer[] array = new Integer[]{1, 2, 3, 4, null, 6, 7, null, 9};
+//        checkArray(array);
+
+        int[] a = new int[]{1, 2, 3};
+        int[] b = new int[]{4, 5, 6, 7};
+
+        System.out.println(Arrays.toString(task6(a, b)));
     }
 
     public  static int searchError(int[] arr) {
@@ -106,6 +112,19 @@ public class Main {
                 System.out.println(i + " is null");
             }
         }
+    }
+
+    public static int[] task6(int[] a, int[] b) {
+        if (a.length != b.length) {
+            throw new RuntimeException("The length of array is not equal! "
+                    + a.length + " length of array a. "
+                    + b.length + " length of array b.");
+        }
+        int[] newArray = new int[a.length];
+        for (int i = 0; i < a.length; i++) {
+            newArray[i] = a[i] + b[i];
+        }
+        return newArray;
     }
 
 }
