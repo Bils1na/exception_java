@@ -1,6 +1,7 @@
 package hw3;
 
 import hw3.exception.DataSizeException;
+import hw3.exception.NumberSizeException;
 
 import java.util.*;
 
@@ -40,18 +41,16 @@ public class DataHandler {
                 this.fullName[0] = string;
                 input.remove(string);
             } else if (string.contains(".")) {
+
                 this.date = string;
                 input.remove(string);
             } else if (string.length() == 1) {
                 this.sex = string;
                 input.remove(string);
-            } else if (string.length() == 11) {
-//                try {
-                    this.phone = Long.parseLong(string);
-                    input.remove(string);
-//                } catch (NumberFormatException e) {
-//                    throw new NumberFormatException();
-//                }
+            } else if (string.length() == 11 || string.matches("\\d+")) {
+                if (string.length() < 11) throw new NumberSizeException(string.length());
+                this.phone = Long.parseLong(string);
+                input.remove(string);
             } else {
                 this.fullName[1] = string;
                 input.remove(string);
@@ -59,7 +58,7 @@ public class DataHandler {
         }
     }
 
-    public String printUserData() {
+    public String getUserData() {
         return Arrays.asList(this.fullName) +" "+ this.sex +" "+ this.date +" "+ this.phone;
     }
 }
