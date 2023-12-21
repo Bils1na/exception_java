@@ -3,9 +3,7 @@ package hw3;
 import hw3.exception.DataSizeException;
 import hw3.exception.NumberSizeException;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -16,7 +14,7 @@ public class Main {
             dataHandler.addNewUser();
             System.out.println(dataHandler.getUserData());
             try {
-                rwLine(dataHandler, Path.of("./phonebook.txt"));
+                rwLine(dataHandler, Path.of("./hw3/phonebook.txt"));
             } catch (IOException e) {
                 System.out.println("Ошибка в работе с файлом");
             }
@@ -30,9 +28,14 @@ public class Main {
     }
 
     public static void rwLine(DataHandler dh, Path pathWrite) throws IOException {
-
-        try (BufferedWriter out = Files.newBufferedWriter(pathWrite)) {
-            out.write(dh.getUserData());
+        File file = new File(String.valueOf(pathWrite));
+        FileWriter writer = new FileWriter(String.valueOf(pathWrite), true);
+        try {
+            writer.write(dh.getUserData() + "\n");
+        } catch (IOException e) {
+            System.out.println("Ошибка при работе с файлом");
+        } finally {
+            writer.close();
         }
     }
 
