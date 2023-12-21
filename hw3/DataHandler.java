@@ -59,6 +59,10 @@ public class DataHandler {
     }
 
     public String getUserData() {
-        return Arrays.asList(this.fullName) +" "+ this.sex +" "+ this.date +" "+ this.phone;
+        return this.fullName[0] +" "+ this.fullName[1] +" "+ this.fullName[2] +" "+ this.date +" "+ this.phone +" "+ this.sex;
+    }
+
+    public String getUserSurname() {
+        return this.fullName[0];
     }
 }

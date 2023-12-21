@@ -14,7 +14,7 @@ public class Main {
             dataHandler.addNewUser();
             System.out.println(dataHandler.getUserData());
             try {
-                rwLine(dataHandler, Path.of("./hw3/phonebook.txt"));
+                writeUserData(dataHandler, Path.of(String.format("./hw3/%s.txt", dataHandler.getUserSurname())));
             } catch (IOException e) {
                 System.out.println("Ошибка в работе с файлом");
             }
@@ -27,16 +27,23 @@ public class Main {
 
     }
 
-    public static void rwLine(DataHandler dh, Path pathWrite) throws IOException {
-        File file = new File(String.valueOf(pathWrite));
-        FileWriter writer = new FileWriter(String.valueOf(pathWrite), true);
-        try {
+    public static void writeUserData(DataHandler dh, Path pathWrite) throws IOException {
+        try (FileWriter writer = new FileWriter(String.valueOf(pathWrite), true)) {
             writer.write(dh.getUserData() + "\n");
         } catch (IOException e) {
             System.out.println("Ошибка при работе с файлом");
-        } finally {
-            writer.close();
         }
+    }
+
+    private static void checkPhonebook (Path pathRead, DataHandler dh) throws FileNotFoundException {
+        File file = new File(String.valueOf(pathRead));
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден");
+        }
+
     }
 
 }
