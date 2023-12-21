@@ -43,7 +43,8 @@ public class DataHandler {
                 this.fullName[0] = string;
                 input.remove(string);
             } else if (string.contains(".") || string.length() == 10) {
-                if (!string.contains(".") || string.contains("/")) throw new DateFormException();
+                if (!string.contains(".") || string.contains("/")
+                        || string.length() < 10) throw new DateFormException();
                 this.date = string;
                 input.remove(string);
             } else if (string.length() == 1) {

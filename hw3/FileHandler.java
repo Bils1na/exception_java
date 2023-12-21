@@ -11,7 +11,7 @@ public class FileHandler {
             if (checkUserExisting(pathWrite, dh)) {
                 writer.write(dh.getUserData() + "\n");
             } else {
-                System.out.println("Такой пользователь уже сущетсвует");
+                System.out.println("Такой пользователь уже существует");
             }
         } catch (IOException e) {
             System.out.println("Ошибка при работе с файлом");
