@@ -1,7 +1,9 @@
 package hw3;
 
 import hw3.exception.DataSizeException;
+import hw3.exception.DateFormException;
 import hw3.exception.NumberSizeException;
+import hw3.exception.SexDataException;
 
 import java.util.*;
 
@@ -40,11 +42,12 @@ public class DataHandler {
                     || string.contains("ko") || string.contains("ova")) {
                 this.fullName[0] = string;
                 input.remove(string);
-            } else if (string.contains(".")) {
-
+            } else if (string.contains(".") || string.length() == 10) {
+                if (!string.contains(".") || string.contains("/")) throw new DateFormException();
                 this.date = string;
                 input.remove(string);
             } else if (string.length() == 1) {
+                if (!(string.contains("m") || string.contains("f"))) throw new SexDataException();
                 this.sex = string;
                 input.remove(string);
             } else if (string.length() == 11 || string.matches("\\d+")) {
