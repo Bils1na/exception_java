@@ -14,7 +14,7 @@ public class Main {
         try {
             dataHandler.addNewUser();
             try {
-                FileHandler.writeUserData(dataHandler, Path.of(String.format("./hw3/%s.txt", dataHandler.getUserSurname())));
+                FileHandler.writeUserData(dataHandler, Path.of(String.format("./hw3/phonebook/%s.txt", dataHandler.getUserSurname())));
             } catch (IOException e) {
                 System.out.println("Ошибка в работе с файлом");
             }
