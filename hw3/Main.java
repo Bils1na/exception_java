@@ -47,8 +47,10 @@ public class Main {
                     }
                 } catch (DataSizeException | NumberSizeException | SexDataException | DateFormException e) {
                     System.out.println(e.getMessage());
+                    e.printStackTrace();
                 } catch (NumberFormatException e) {
                     System.out.println("Не верный формат ввода для номера телефона. Введите по образцу - 89991234567.");
+                    e.printStackTrace();
                 }
             }
         }
