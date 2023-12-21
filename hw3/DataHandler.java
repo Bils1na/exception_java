@@ -1,5 +1,7 @@
 package hw3;
 
+import hw3.exception.DataSizeException;
+
 import java.util.*;
 
 public class DataHandler {
@@ -17,11 +19,16 @@ public class DataHandler {
 
     public void addNewUser() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите через пробел ФИО(латиницей), дату рождения(dd.mm.yyyy), " +
+                            "пол(m/f) и ваш номер телефона(89991234567) >> ");
         ArrayList<String> inputData = new ArrayList<>(Arrays.asList(scanner.nextLine().split(" ")));
         setData(inputData);
     }
 
     private void setData(ArrayList<String> input) {
+        if (input.size() != 6) {
+            throw new DataSizeException(input.size());
+        }
         while (input.iterator().hasNext()) {
             String string = input.iterator().next();
 
@@ -39,8 +46,12 @@ public class DataHandler {
                 this.sex = string;
                 input.remove(string);
             } else if (string.length() == 11) {
-                this.phone = Long.parseLong(string);
-                input.remove(string);
+//                try {
+                    this.phone = Long.parseLong(string);
+                    input.remove(string);
+//                } catch (NumberFormatException e) {
+//                    throw new NumberFormatException();
+//                }
             } else {
                 this.fullName[1] = string;
                 input.remove(string);
